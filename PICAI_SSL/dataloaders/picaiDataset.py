@@ -335,7 +335,7 @@ class ToTensor(object):
 
 if __name__ == '__main__':
     data_dir = '/content/drive/MyDrive/0_sup/Dataset/160_160_20'
-    list_dir = '/content/drive/MyDrive/SSL/Dataset/Data_split/423_pids'
+    list_dir = '/content/drive/MyDrive/0_sup/Dataset/Data_split/423_pids'
 
     dataset = PICAIDataset(data_dir, list_dir, split='test')
     sample = dataset[0]
