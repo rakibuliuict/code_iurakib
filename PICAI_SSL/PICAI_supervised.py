@@ -110,14 +110,14 @@ for epoch in range(start_epoch, args.epochs):
     for batch in tqdm(dataloader, ncols=80):
         images, labels = batch['image'].cuda(), batch['label'].cuda()
 
-        # Print image and label shapes before passing to model
-        print("Input shape before model:", images.shape)  # e.g., torch.Size([B, 3, D, H, W])
-        print("Label shape:", labels.shape)               # e.g., torch.Size([B, 1, D, H, W])
+        # # Print image and label shapes before passing to model
+        # print("Input shape before model:", images.shape)  # e.g., torch.Size([B, 3, D, H, W])
+        # print("Label shape:", labels.shape)               # e.g., torch.Size([B, 1, D, H, W])
 
         outputs = net(images)
 
-        # Print output shape after model forward pass
-        print("Output shape after model:", outputs.shape)  # e.g., torch.Size([B, C, D, H, W])
+        # # Print output shape after model forward pass
+        # print("Output shape after model:", outputs.shape)  # e.g., torch.Size([B, C, D, H, W])
 
 
         loss_ce = ce_loss(outputs, labels.squeeze(1))
