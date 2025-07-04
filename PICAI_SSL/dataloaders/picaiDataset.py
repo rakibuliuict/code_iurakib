@@ -338,6 +338,7 @@ if __name__ == '__main__':
     list_dir = '/content/drive/MyDrive/0_sup/Data_split/423_pids'
 
     dataset = PICAIDataset(data_dir, list_dir, split='test')
+    
     sample = dataset[0]
 
     print("Image shape:", sample['image'].shape)
