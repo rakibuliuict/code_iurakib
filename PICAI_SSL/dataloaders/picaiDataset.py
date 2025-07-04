@@ -334,8 +334,8 @@ class ToTensor(object):
         return torch.from_numpy(image), torch.from_numpy(label)
 
 if __name__ == '__main__':
-    data_dir = '/content/drive/MyDrive/0_sup/Dataset/160_160_20'
-    list_dir = '/content/drive/MyDrive/0_sup/Data_split/423_pids'
+    data_dir = '/content/drive/MyDrive/0_sup/Dataset/160_160_16'
+    list_dir = '/content/drive/MyDrive/0_sup/data_splits'
 
     dataset = PICAIDataset(data_dir, list_dir, split='test')
 
