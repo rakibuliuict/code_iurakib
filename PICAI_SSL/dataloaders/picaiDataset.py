@@ -195,11 +195,11 @@ class PICAIDataset(Dataset):
         self.reverse = reverse
 
         tr_transform = Compose([
-            RandomCrop((160, 160, 20)),
+            RandomCrop((160, 160, 16)),
             ToTensor()
         ])
         test_transform = Compose([
-            CenterCrop((160, 160, 20)),
+            CenterCrop((160, 160, 16)),
             ToTensor()
         ])
 
@@ -338,7 +338,7 @@ if __name__ == '__main__':
     list_dir = '/content/drive/MyDrive/0_sup/Data_split/423_pids'
 
     dataset = PICAIDataset(data_dir, list_dir, split='test')
-    
+
     sample = dataset[0]
 
     print("Image shape:", sample['image'].shape)
