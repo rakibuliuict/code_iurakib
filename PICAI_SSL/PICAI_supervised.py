@@ -59,11 +59,18 @@ dataloader = DataLoader(dataset, batch_size=args.batch_size, shuffle=True, num_w
 
 # ------------------ Model ------------------ #
 if args.model == 'VNet':
+# Instantiate model
     net = VNet(
-    spatial_dims=3,
-    in_channels=3,
-    out_channels=2
-)
+        spatial_dims=3,
+        in_channels=3,        # e.g., T2W, ADC, HBV
+        out_channels=2,       # Binary segmentation (background vs lesion)
+        act="relu",
+        dropout_prob=0.5,
+        dropout_prob_down=0.5,
+        dropout_prob_up=(0.5, 0.5),
+        dropout_dim=3,
+        bias=False
+    )
 else:
     net = ResVNet(n_channels=3, n_classes=2, normalization='instancenorm', has_dropout=True)
 net = nn.DataParallel(net).cuda()
