@@ -63,7 +63,7 @@ if args.model == 'VNet':
     net = VNet(
         spatial_dims=3,
         in_channels=3,        # e.g., T2W, ADC, HBV
-        out_channels=2,       # Binary segmentation (background vs lesion)
+        out_channels=1,       # Binary segmentation (background vs lesion)
         act="relu",
         dropout_prob=0.5,
         dropout_prob_down=0.5,
@@ -111,13 +111,13 @@ for epoch in range(start_epoch, args.epochs):
         images, labels = batch['image'].cuda(), batch['label'].cuda()
 
         # # Print image and label shapes before passing to model
-        print("Input shape before model:", images.shape)  # e.g., torch.Size([B, 3, D, H, W])
-        print("Label shape:", labels.shape)               # e.g., torch.Size([B, 1, D, H, W])
+        # print("Input shape before model:", images.shape)  # e.g., torch.Size([B, 3, D, H, W])
+        # print("Label shape:", labels.shape)               # e.g., torch.Size([B, 1, D, H, W])
 
         outputs = net(images)
 
         # # Print output shape after model forward pass
-        print("Output shape after model:", outputs.shape)  # e.g., torch.Size([B, C, D, H, W])
+        # print("Output shape after model:", outputs.shape)  # e.g., torch.Size([B, C, D, H, W])
 
 
         loss_ce = ce_loss(outputs, labels.squeeze(1))
