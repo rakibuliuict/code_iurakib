@@ -14,7 +14,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 import shutil
 
-from monai.networks.nets import VNet
+from pancreas.Vnet import VNet
 from networks.ResVNet import ResVNet
 from dataloaders.picaiDataset import PICAIDataset
 from utils.LA_utils import to_cuda
@@ -23,15 +23,15 @@ from utils import test_3d_patch
 
 # ------------------ Argument parser ------------------ #
 parser = argparse.ArgumentParser()
-parser.add_argument('--root_path', type=str, default='/content/drive/MyDrive/SSL/Dataset/160_160_20')
-parser.add_argument('--list_path', type=str, default='/content/drive/MyDrive/SSL/Dataset/Data_split/423_pids')
+parser.add_argument('--root_path', type=str, default='/content/drive/MyDrive/0_sup/Dataset/160_160_20')
+parser.add_argument('--list_path', type=str, default='/content/drive/MyDrive/0_sup/Data_split/423_pids')
 parser.add_argument('--exp', type=str, default='Supervised')
 parser.add_argument('--model', type=str, default='VNet', choices=['VNet', 'ResVNet'])
 parser.add_argument('--epochs', type=int, default=50)
 parser.add_argument('--batch_size', type=int, default=2)
 parser.add_argument('--lr', type=float, default=1e-3)
 parser.add_argument('--gpu', type=str, default='0')
-parser.add_argument('--save_path', type=str, default='/content/drive/MyDrive/SSL/Trained_model')
+parser.add_argument('--save_path', type=str, default='/content/drive/MyDrive/0_sup/Trained_model')
 args = parser.parse_args()
 
 # ------------------ Setup ------------------ #
