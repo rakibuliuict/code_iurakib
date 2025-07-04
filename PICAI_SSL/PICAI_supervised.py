@@ -27,7 +27,7 @@ parser.add_argument('--root_path', type=str, default='/content/drive/MyDrive/0_s
 parser.add_argument('--list_path', type=str, default='/content/drive/MyDrive/0_sup/data_splits')
 parser.add_argument('--exp', type=str, default='Supervised')
 parser.add_argument('--model', type=str, default='VNet', choices=['VNet', 'ResVNet'])
-parser.add_argument('--epochs', type=int, default=3)
+parser.add_argument('--epochs', type=int, default=6)
 parser.add_argument('--batch_size', type=int, default=2)
 parser.add_argument('--lr', type=float, default=1e-3)
 parser.add_argument('--gpu', type=str, default='0')
