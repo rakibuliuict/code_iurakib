@@ -63,7 +63,7 @@ if args.model == 'VNet':
     net = VNet(
         spatial_dims=3,
         in_channels=3,        # e.g., T2W, ADC, HBV
-        out_channels=1,       # Binary segmentation (background vs lesion)
+        out_channels=2,       # Binary segmentation (background vs lesion)
         act="relu",
         dropout_prob=0.5,
         dropout_prob_down=0.5,
