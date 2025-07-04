@@ -1,18 +1,8 @@
-# Copyright (c) MONAI Consortium
-# Licensed under the Apache License, Version 2.0 (the "License");
-# You may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#     http://www.apache.org/licenses/LICENSE-2.0
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 from __future__ import annotations
 
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 from monai.networks.blocks.convolutions import Convolution
 from monai.networks.layers.factories import Act, Conv, Dropout, Norm, split_args
@@ -108,10 +98,22 @@ class UpTransition(nn.Module):
         self.act_function2 = get_acti_layer(act, out_channels)
         self.ops = _make_nconv(spatial_dims, out_channels, nconvs, act)
 
+    def center_crop_to_match(self, src, target):
+        _, _, d, h, w = target.shape
+        cd, ch, cw = src.shape[2:]
+        sd = (cd - d) // 2
+        sh = (ch - h) // 2
+        sw = (cw - w) // 2
+        return src[:, :, sd:sd + d, sh:sh + h, sw:sw + w]
+
     def forward(self, x, skipx):
         x = self.dropout(x) if self.dropout else x
         skipx = self.dropout2(skipx)
         out = self.act_function1(self.bn1(self.up_conv(x)))
+
+        if out.shape[2:] != skipx.shape[2:]:
+            skipx = self.center_crop_to_match(skipx, out)
+
         xcat = torch.cat((out, skipx), 1)
         out = self.ops(xcat)
         out = self.act_function2(torch.add(out, xcat))
