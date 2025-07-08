@@ -296,7 +296,7 @@ for epoch in range(start_epoch, args.epochs):
     if (epoch + 1) % 2 == 0:
         net.eval()
         dice_score = test_3d_patch.var_all_case_LA(
-            net, num_classes=2, patch_size=(160, 160, 20), stride_xy=18, stride_z=4
+            net, num_classes=2, patch_size=(160, 160, 16), stride_xy=18, stride_z=4
         )
         logging.info(f"Epoch [{epoch+1}/{args.epochs}], Loss: {avg_loss:.4f}, Dice: {dice_score:.4f}")
 
