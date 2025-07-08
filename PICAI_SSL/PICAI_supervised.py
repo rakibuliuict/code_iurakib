@@ -202,7 +202,7 @@ from utils import test_3d_patch
 
 # ------------------ Argument parser ------------------ #
 parser = argparse.ArgumentParser()
-parser.add_argument('--root_path', type=str, default='/content/drive/MyDrive/SSL/Dataset/160_160_20')
+parser.add_argument('--root_path', type=str, default='/content/drive/MyDrive/SSL/Dataset/160_160_16')
 parser.add_argument('--list_path', type=str, default='/content/drive/MyDrive/SSL/Dataset/Data_split/423_pids')
 parser.add_argument('--exp', type=str, default='Supervised')
 parser.add_argument('--model', type=str, default='VNet', choices=['VNet', 'ResVNet'])
